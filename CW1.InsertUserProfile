@@ -1,0 +1,24 @@
+CREATE PROCEDURE CW1.InsertUserProfile
+    @UserID INT,
+    @Username NVARCHAR(50),
+    @Email NVARCHAR(100),
+    @Password NVARCHAR(100),
+    @ProfileName NVARCHAR(50),
+    @Bio NVARCHAR(MAX),
+    @PhotoURL NVARCHAR(MAX)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO Users (UserID, Username, Email, Password)
+    VALUES (@UserID, @Username, @Email, @Password);
+
+    DECLARE @ProfileID INT;
+    SET @ProfileID = (SELECT ISNULL(MAX(ProfileID), 0) + 1 FROM Profile);
+
+    INSERT INTO Profile (ProfileID, UserID, ProfileName, Bio)
+    VALUES (@ProfileID, @UserID, @ProfileName, @Bio);
+
+    INSERT INTO Photo (PhotoID, ProfileID, PhotoURL)
+    VALUES (@ProfileID, @ProfileID, @PhotoURL);
+END;

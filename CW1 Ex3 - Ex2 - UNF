@@ -1,0 +1,22 @@
+CREATE TABLE CW1.CW1_Ex3_Ex2_UNF (
+    UserID INT PRIMARY KEY,
+    Username NVARCHAR(50),
+    ProfilePhoto NVARCHAR(255),
+    Location NVARCHAR(100),
+    MembershipStartDate DATE,
+    NumberOfFollowers INT,
+    NumberOfFollowing INT,
+    [Statistics] NVARCHAR(MAX),
+    ProfileFeed NVARCHAR(MAX),
+    PhotosOfTrails NVARCHAR(MAX),
+    ReviewsOfTrails NVARCHAR(MAX),
+    Activities NVARCHAR(MAX),
+    CompletedTrails NVARCHAR(MAX)
+);
+
+-- Sample Data for UNF
+INSERT INTO CW1.CW1_Ex3_Ex2_UNF (UserID, Username, ProfilePhoto, Location, MembershipStartDate, NumberOfFollowers, NumberOfFollowing, [Statistics], ProfileFeed, PhotosOfTrails, ReviewsOfTrails, Activities, CompletedTrails)
+VALUES 
+(1, 'Grace Hopper', 'profile_photo1.jpg', 'New York', '2022-01-01', 500, 200, 'Statistics for Grace', 'Profile feed for Grace', 'photo1,photo2', 'Review1,Review2', 'Hiking,Running', 'Trail1,Trail2'),
+(2, 'Tim Berners-Lee', 'profile_photo2.jpg', 'California', '2023-03-15', 300, 150, 'Statistics for Tim', 'Profile feed for Tim', 'photo3,photo4', 'Review3,Review4', 'Camping,Biking', 'Trail3,Trail4'),
+(3, 'Ada Lovelace', 'profile_photo3.jpg', 'London', '2024-05-20', 200, 100, 'Statistics for Ada', 'Profile feed for Ada', 'photo5,photo6', 'Review5,Review6', 'Skiing,Swimming', 'Trail5,Trail6');

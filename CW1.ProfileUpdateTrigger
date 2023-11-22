@@ -1,0 +1,17 @@
+CREATE TRIGGER CW1.ProfileUpdateTrigger
+ON CW1.Profile
+AFTER UPDATE
+AS
+BEGIN
+    IF UPDATE(ProfileName)
+    BEGIN
+        DECLARE @UserID INT, @NewProfileName NVARCHAR(50), @OldProfileName NVARCHAR(50);
+
+        SELECT @UserID = UserID FROM inserted;
+        SELECT @NewProfileName = ProfileName FROM inserted;
+        SELECT @OldProfileName = ProfileName FROM deleted;
+
+        INSERT INTO CW1.LogTable (UserID, Action, OldValue, NewValue, ActionDateTime)
+        VALUES (@UserID, 'ProfileName Update', @OldProfileName, @NewProfileName, GETDATE());
+    END
+END;

@@ -1,0 +1,24 @@
+CREATE PROCEDURE CW1.UpdateUserProfile
+    @UserID INT,
+    @Username NVARCHAR(50),
+    @Email NVARCHAR(100),
+    @Password NVARCHAR(100),
+    @ProfileName NVARCHAR(50),
+    @Bio NVARCHAR(MAX),
+    @PhotoURL NVARCHAR(MAX)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Users
+    SET Username = @Username, Email = @Email, Password = @Password
+    WHERE UserID = @UserID;
+
+    UPDATE Profile
+    SET ProfileName = @ProfileName, Bio = @Bio
+    WHERE UserID = @UserID;
+
+    UPDATE Photo
+    SET PhotoURL = @PhotoURL
+    WHERE ProfileID = (SELECT ProfileID FROM Profile WHERE UserID = @UserID);
+END;

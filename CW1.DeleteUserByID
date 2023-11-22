@@ -1,0 +1,10 @@
+CREATE PROCEDURE CW1.DeleteUserByID
+    @UserID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM Photo WHERE ProfileID IN (SELECT ProfileID FROM Profile WHERE UserID = @UserID);
+    DELETE FROM Profile WHERE UserID = @UserID;
+    DELETE FROM Users WHERE UserID = @UserID;
+END;

@@ -1,0 +1,84 @@
+-- 3NF Users Table
+CREATE TABLE CW1_Ex3_Ex2_3NF_Users (
+    UserID INT PRIMARY KEY,
+    Username NVARCHAR(50),
+    ProfilePhoto NVARCHAR(255),
+    Location NVARCHAR(100)
+);
+
+-- 3NF UserStats Table
+CREATE TABLE CW1_Ex3_Ex2_3NF_UserStats (
+    UserID INT PRIMARY KEY,
+    MembershipStartDate DATE,
+    FOREIGN KEY (UserID) REFERENCES CW1_Ex3_Ex2_3NF_Users(UserID)
+);
+
+-- 3NF Followers Table
+CREATE TABLE CW1_Ex3_Ex2_3NF_Followers (
+    UserID INT PRIMARY KEY,
+    NumberofFollowers INT,
+    FOREIGN KEY (UserID) REFERENCES CW1_Ex3_Ex2_3NF_Users(UserID)
+);
+
+-- 3NF Following Table
+CREATE TABLE CW1_Ex3_Ex2_3NF_Following (
+    UserID INT PRIMARY KEY,
+    NumberofFollowing INT,
+    FOREIGN KEY (UserID) REFERENCES CW1_Ex3_Ex2_3NF_Users(UserID)
+);
+
+-- 3NF Profile Table
+CREATE TABLE CW1_Ex3_Ex2_3NF_Profile (
+    UserID INT PRIMARY KEY,
+    Insights NVARCHAR(MAX),
+    ProfileFeed NVARCHAR(MAX),
+    FOREIGN KEY (UserID) REFERENCES CW1_Ex3_Ex2_3NF_Users(UserID)
+);
+
+-- 3NF Trails Table
+CREATE TABLE CW1_Ex3_Ex2_3NF_Trails (
+    TrailID INT PRIMARY KEY,
+    UserID INT,
+    PhotosOfTrails NVARCHAR(MAX),
+    ReviewsOfTrails NVARCHAR(MAX),
+    Activities NVARCHAR(MAX),
+    CompletedTrails NVARCHAR(MAX),
+    FOREIGN KEY (UserID) REFERENCES CW1_Ex3_Ex2_3NF_Users(UserID)
+);
+
+-- Sample Data for 3NF
+INSERT INTO CW1_Ex3_Ex2_3NF_Users (UserID, Username, ProfilePhoto, Location)
+VALUES 
+(1, 'Grace Hopper', 'profile_photo1.jpg', 'New York'),
+(2, 'Tim Berners-Lee', 'profile_photo2.jpg', 'California'),
+(3, 'Ada Lovelace', 'profile_photo3.jpg', 'London');
+
+INSERT INTO CW1_Ex3_Ex2_3NF_UserStats (UserID, MembershipStartDate)
+VALUES 
+(1, '2022-01-01'),
+(2, '2023-03-15'),
+(3, '2024-05-20');
+
+INSERT INTO CW1_Ex3_Ex2_3NF_Followers (UserID, NumberofFollowers)
+VALUES 
+(1, 500),
+(2, 300),
+(3, 200);
+
+INSERT INTO CW1_Ex3_Ex2_3NF_Following (UserID, NumberofFollowing)
+VALUES 
+(1, 200),
+(2, 150),
+(3, 100);
+
+INSERT INTO CW1_Ex3_Ex2_3NF_Profile (UserID, Insights, ProfileFeed)
+VALUES 
+(1, 'Insights for Grace', 'Profile feed for Grace'),
+(2, 'Insights for Tim', 'Profile feed for Tim'),
+(3, 'Insights for Ada', 'Profile feed for Ada');
+
+INSERT INTO CW1_Ex3_Ex2_3NF_Trails (TrailID, UserID, PhotosOfTrails, ReviewsOfTrails, Activities, CompletedTrails)
+VALUES 
+(1, 1, 'photo1,photo2', 'Review1,Review2', 'Hiking,Running', 'Trail1,Trail2'),
+(2, 2, 'photo3,photo4', 'Review3,Review4', 'Camping,Biking', 'Trail3,Trail4'),
+(3, 3, 'photo5,photo6', 'Review5,Review6', 'Skiing,Swimming', 'Trail5,Trail6');

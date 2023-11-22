@@ -1,0 +1,15 @@
+CREATE VIEW CW1.UserProfileView AS
+SELECT U.UserID,
+       U.Username,
+       U.ProfilePhoto,
+       U.Location,
+       US.MembershipStartDate,
+       F.NumberofFollowers,
+       FO.NumberofFollowing,
+       P.Insights,
+       P.ProfileFeed
+FROM CW1_Ex3_Ex2_3NF_Users U
+JOIN CW1_Ex3_Ex2_3NF_Profile P ON U.UserID = P.UserID
+LEFT JOIN CW1_Ex3_Ex2_3NF_UserStats US ON U.UserID = US.UserID
+LEFT JOIN CW1_Ex3_Ex2_3NF_Followers F ON U.UserID = F.UserID
+LEFT JOIN CW1_Ex3_Ex2_3NF_Following FO ON U.UserID = FO.UserID;
