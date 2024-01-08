@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:14512", // URL for the local IIS Express application
+      "sslPort": 44351 // SSL port for secure communication
+    }
+  },
+  "profiles": {
+    "ProfileServiceApp": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger", // URL to launch when starting the application
+      "applicationUrl": "https://localhost:7296;http://localhost:5269", // Application URLs for HTTPS and HTTP
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development" // Environment variable for ASP.NET Core environment
+      },
+      "dotnetRunMessages": true
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger", // URL to launch when starting the application
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development" // Environment variable for ASP.NET Core environment
+      }
+    }
+  }
+}

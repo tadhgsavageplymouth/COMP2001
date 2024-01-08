@@ -1,0 +1,11 @@
+﻿using ProfileServiceApp.Models;
+
+namespace ProfileServiceApp.Dto
+{
+    public class UserDto
+    {
+        public int Id { get; set; } // Identifier for the user DTO
+        public string Title { get; set; } // Title of the user DTO
+        public string Text { get; set; } // Text content of the user DTO
+    }
+}
